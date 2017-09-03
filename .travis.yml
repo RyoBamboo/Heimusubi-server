@@ -1,15 +1,11 @@
 language: python
 python:
- - "3.6"
-
-# command to install dependencies
-install: "pip install -r requirements.txt"
-
-# command to run tests
+- '3.6'
+install: pip install -r requirements.txt
 script: nosetests -v -s
-
-# specify test branch
 branches:
- only:
+  only:
   - develop
-
+notifications:
+  slack:
+    secure: sJO4mPsYwW0MptKZIkzQRvAGbL1SQiGDZma92jIjuPsWIhYxkRhTz8i0Vz0OG2pRQZY9bKGyWtSUbyPhcqqZuUSxLjHFrPkgjWNYmPcJSpuGwaJMGc3HhlxXYyRozJAQAeBdobIaKfqmyrvdKEVfs2EZct2S2kogSR168qiOx3bIlYEAmJFSNts68l5iqAPTFxbMnFQLHAlwwCHQ4tRxlxaiVcg0Gh9Yq/t4DLL7t+Dows5jVCO90gL/fuT9dDYpgNHKJaabXsw+D67Y/rZ9RZ+abIsXXHHt/qR5KLG9xir2xxOA5XG8mLDYm5I9yO1MaUbuOyYCMCc7x0eA51T5fik7/aLjAZpcHaOxRTnhw2Hp3XBS9iSlgNfNY6VejqZaAcBmeUt9KWrJ1KOmP/EDd/k1yJ7zMILAt8gHus+i0UqH/Z38IN09jNvNbkEqYolZPl/+/RwfLRZbnXF+nPq9A7dCQ0rFqzkJvJwg8nMBi/XMH3AqId1lqkpKQ54gVUz/9/UWSV1Iym0lh6HM66PyPfdBFnZ/sChvPKeT6L5IcT+rVRVFFZAc7GGBc0xNdplK0FdHBzeEJg3C4C5u6BMnM7Xdj6lZiL+LP+fEVab9SrUXV5g2uhZhmVL69PhUG7gpIM1GDX6TF2LrZJiKsmE1bW4bgUL1MrNbvT15UsTP61k=
