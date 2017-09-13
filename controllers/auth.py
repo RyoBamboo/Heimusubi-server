@@ -9,4 +9,5 @@ def signIn():
 
 @app.route('/api/signout')
 def signOut():
+	return(db)
 	return 'signOut'
