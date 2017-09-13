@@ -2,6 +2,5 @@
 
 class User:
 
-	def __init__():
-
-	def create(self):
+	def get_user_by_email(email):
+		return  True
