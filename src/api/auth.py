@@ -6,12 +6,17 @@ from src.models.user import User
 
 bp = Blueprint('auth', __name__)
 
-@bp.route('/api/signin')
+@bp.route('/api/auth/signin')
 def signIn():
 	return request.args.post('id', '')
 
 
-@bp.route('/api/signout')
+@bp.route('api/auth/signup')
+def signUp():
+
+
+
+@bp.route('/api/auth/signout')
 def signOut():
 	User.create_user('a', 'a', 1, 1, 1)
 	return 'signOut'

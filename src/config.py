@@ -6,5 +6,5 @@
 import os
 
 class BaseConfig():
-	SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+	SQLALCHEMY_DATABASE_URI = "postgresql://takenoshita@localhost:5432/heimusubi-server"
 	SQLALCHEMY_TRACK_MODIFICATIONS = True
