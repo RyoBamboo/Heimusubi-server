@@ -13,22 +13,15 @@ class User(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	user_name = db.Column(db.String(32))
 	email = db.Column(db.String(32))
+	# passward = db.Column(db.String(32))
 	status = db.Column(db.Integer)
 	heimu_id = db.Column(db.Integer)
-	address_id = db.Column(db.Integer)
 	created = db.Column(db.DateTime)
 	modified = db.Column(db.DateTime)
 
-	def create_user(user_name, email, status, heimu_id, address_id):
-		user = User()
-		user.user_name = user_name
-		user.email = email
-		user.status = 127
-		user.heimu_id = 127
-		user.address_id = 127
-
-		db.session.add(user)
-		db.session.commit()
-
-	def get_user_by_email(email):
-		return  True
+	@classmethod
+	def is_email_available(cls, email):
+		if db.session.query(User).filter(User.email == email).first() is None:
+			return True
+		else:
+			return False
