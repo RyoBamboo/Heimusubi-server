@@ -13,15 +13,19 @@ def signIn():
 	return request.args.post('id', '')
 
 
-@bp.route('/api/auth/signup', methods=['GET, POST'])
+@bp.route('/api/auth/signup', methods=['POST'])
 def signUp():
 
 	user_name = request.form['user_name']
 	email = request.form['email']
 	plaintext_passward = request['plaintext_passward']
-	unregisted_user = User(user_name, email, plaintext_passward)
 
-	return True
+	passward = User.hash_password(plaintext_passward)
+
+	unregisted_user = User(user_name, email, passward)
+	unregisted_user.create()
+
+	return 'ok'
 
 
 @bp.route('/api/auth/signout')
