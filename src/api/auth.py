@@ -3,14 +3,15 @@ from flask import Blueprint, request
 from pprint import pprint
 
 from src import db
+from src.service.response import Response
 
 from src.models.user import User
 
 bp = Blueprint('auth', __name__)
 
-@bp.route('/api/auth/signin')
+@bp.route('/api/auth/signin', methods=['POST'])
 def signIn():
-	return request.args.post('id', '')
+	email = request.form['email']
 
 
 @bp.route('/api/auth/signup', methods=['POST'])
@@ -30,10 +31,14 @@ def signUp():
 
 @bp.route('/api/auth/signout')
 def signOut():
-	is_valid_email = User().is_email_available('a')
+	response = Response(200, 'test', '222')
 
-	if is_valid_email:
-		return 'OK'
-	else:
-		return 'NO'
+
+	return response.send()
+	# is_valid_email = User().is_email_available('a')
+
+	# if is_valid_email:
+	# 	return 'OK'
+	# else:
+	# 	return 'NO'
 	# return is_valid_email
