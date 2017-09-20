@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 
-#	モジュールの読み込み
-import os, sys
-sys.path.append(os.getcwd())
+#	基本モジュールの読み込み
+import os, sys, hashlib
+import time
+from datetime import *
 
+#	プロジェクトモジュールの読み込み
+sys.path.append(os.getcwd())
 from src import db
+from src import config
 
 #	クラス定義
 class User(db.Model):
@@ -13,22 +17,43 @@ class User(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	user_name = db.Column(db.String(32))
 	email = db.Column(db.String(32))
+	password = db.Column(db.String(32))
 	status = db.Column(db.Integer)
 	heimu_id = db.Column(db.Integer)
-	address_id = db.Column(db.Integer)
 	created = db.Column(db.DateTime)
 	modified = db.Column(db.DateTime)
 
-	def create_user(user_name, email, status, heimu_id, address_id):
-		user = User()
-		user.user_name = user_name
-		user.email = email
-		user.status = 127
-		user.heimu_id = 127
-		user.address_id = 127
+	def __init__(self, user_name, email, password):
+		self.user_name = user_name
+		self.email = email
+		self.password = password
 
-		db.session.add(user)
+
+	def create(self):
+		self.status 	= 1
+		self.created = datetime.now()
+		self.modified = datetime.now()
+
+		db.session.add(self)
 		db.session.commit()
 
-	def get_user_by_email(email):
-		return  True
+		return self
+
+
+	@classmethod
+	def get_by(cls, key, value):
+		return db.session.query(cls).filter_by(key==value).first()
+
+
+	@classmethod
+	def hash_password(cls, plaintext_password):
+		password_str = (config.BaseConfig.PASSWORD_SALT + plaintext_password).encode('utf-8')
+		return hashlib.md5(password_str).hexdigest()
+
+
+	@classmethod
+	def is_email_available(cls, email):
+		if db.session.query(User).filter(User.email == email).first() is None:
+			return True
+		else:
+			return False
