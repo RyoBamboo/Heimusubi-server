@@ -37,6 +37,13 @@ class User(db.Model):
 		db.session.add(self)
 		db.session.commit()
 
+		return self
+
+
+	@classmethod
+	def get_by(cls, key, value):
+		return db.session.query(cls).filter_by(key==value).first()
+
 
 	@classmethod
 	def hash_password(cls, plaintext_password):

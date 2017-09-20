@@ -12,6 +12,8 @@ bp = Blueprint('auth', __name__)
 @bp.route('/api/auth/signin', methods=['POST'])
 def signIn():
 	email = request.form['email']
+	user = User.get_by('email', email)
+	return user.user_name
 
 
 @bp.route('/api/auth/signup', methods=['POST'])
@@ -20,18 +22,21 @@ def signUp():
 	user_name = request.form['user_name']
 	email = request.form['email']
 	plaintext_passward = request['plaintext_passward']
-
 	passward = User.hash_password(plaintext_passward)
 
-	unregisted_user = User(user_name, email, passward)
-	unregisted_user.create()
+	if User.is_email_available(email):
+		# if user's email is available, register user infomation to database
+		unregisted_user = User(user_name, email, passward)
+		unregisted_user.create()
+		return Response(200, '', '').send()
 
-	return 'ok'
+	else:
+		return  Response(400, '', 'Your email has been registered already.').send()
+
 
 
 @bp.route('/api/auth/signout')
 def signOut():
-	response = Response(200, 'test', '222')
 
 
 	return response.send()

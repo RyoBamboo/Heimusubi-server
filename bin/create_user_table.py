@@ -22,7 +22,7 @@ def func_create_table(conn):
 	except:
 		print('テーブルの作成時にエラーが発生しました')
 		cursor.close()
-		# conn.rollback()
+		conn.rollback()
 
 
 def func_drop_table(conn):
