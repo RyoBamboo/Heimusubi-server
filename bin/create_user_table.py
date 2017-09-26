@@ -14,8 +14,8 @@ def func_create_table(conn):
 				password varchar(80), \
 				status int, \
 				heimu_id int, \
-				created timestamp, \
-				modified timestamp \
+				created int, \
+				modified int \
 		)')
 		conn.commit()
 		print('テーブルの作成が完了しました')
