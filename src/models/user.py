@@ -3,12 +3,14 @@
 #	基本モジュールの読み込み
 import os, sys, hashlib
 import time
-from datetime import *
+from datetime import datetime
 
 #	プロジェクトモジュールの読み込み
 sys.path.append(os.getcwd())
 from src import db
 from src import config
+
+from datetime import datetime
 
 #	クラス定義
 class User(db.Model):
@@ -20,8 +22,8 @@ class User(db.Model):
 	password = db.Column(db.String(32))
 	status = db.Column(db.Integer)
 	heimu_id = db.Column(db.Integer)
-	created = db.Column(db.DateTime)
-	modified = db.Column(db.DateTime)
+	created = db.Column(db.Integer)
+	modified = db.Column(db.Integer)
 
 	def __init__(self, user_name, email, password):
 		self.user_name = user_name
@@ -31,18 +33,30 @@ class User(db.Model):
 
 	def create(self):
 		self.status 	= 1
-		self.created = datetime.now()
-		self.modified = datetime.now()
+		self.created =  int(datetime.now().strftime('%s'))
+		self.modified =  int(datetime.now().strftime('%s'))
 
 		db.session.add(self)
 		db.session.commit()
-
 		return self
+
+
+	def get_attrs(self):
+		attrs_list = {}
+		for key, value in vars(self).items():
+			if key != '_sa_instance_state': attrs_list[key] = value
+
+		return attrs_list
 
 
 	@classmethod
 	def get_by(cls, key, value):
-		return db.session.query(cls).filter_by(key==value).first()
+		return db.session.query(cls).filter(getattr(cls, key) == value).first()
+
+
+	@classmethod
+	def get_all_by(cls, key, value):
+		return db.session.query(cls).filter(getattr(cls, key) == value).all()
 
 
 	@classmethod

@@ -10,18 +10,18 @@ class Response():
 	}
 
 	def __init__(self, status = '', data = '', error_message = ''):
-		self.status = status
-		self.data = data
-		self.error_message = error_message
+		self.set_status(status)
+		self.set_data(data)
+		self.set_error_message(error_message)
 
 	def set_status(self, status):
-		self.status = status
+		self.response['status'] = status
 
 	def set_data(self, data):
-		self.data = data
+		self.response['data'] = data
 
 	def set_error_message(self, error_message):
-		self.error_message = error_message
+		self.response['error_message'] = error_message
 
 	def send(self):
 		return json.dumps(self.response)
