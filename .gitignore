@@ -5,3 +5,4 @@ __pycache__/
 secret/
 
 src/config.py
+src/admin
