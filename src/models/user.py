@@ -50,6 +50,11 @@ class User(db.Model):
 
 
 	@classmethod
+	def get_all(cls):
+		return db.session.query(cls).all()
+
+
+	@classmethod
 	def get_by(cls, key, value):
 		return db.session.query(cls).filter(getattr(cls, key) == value).first()
 
@@ -57,6 +62,13 @@ class User(db.Model):
 	@classmethod
 	def get_all_by(cls, key, value):
 		return db.session.query(cls).filter(getattr(cls, key) == value).all()
+
+
+	@classmethod
+	def delete_by(cls, key, value):
+		user = db.session.query(cls).filter(getattr(cls, key) == value).first()
+		db.session.delete(user)
+		db.session.commit()
 
 
 	@classmethod
