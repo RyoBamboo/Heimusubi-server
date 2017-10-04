@@ -4,5 +4,3 @@ __pycache__/
 # phpPgAdmin
 secret/
 
-src/config.py
-src/admin
