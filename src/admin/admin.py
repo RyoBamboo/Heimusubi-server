@@ -60,3 +60,5 @@ def add():
 def delete(user_id):
 	User.delete_by('id', user_id)
 	return redirect("/admin/user")
+
+
