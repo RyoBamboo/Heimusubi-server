@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<table class="uk-table uk-table-striped uk-table-middle uk-table-divider uk-table-hover">
+	<thead>
+		<tr>
+			<th>ユーザID</th>
+			<th>ユーザ名</th>
+			<th>Eメール</th>
+			<th>パスワード</th>
+			<th>作成時刻</th>
+			<th>変更時刻</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for user in users %}
+			<tr>
+				<td>{{ user.id }}</td>
+				<td>{{ user.user_name }}</td>
+				<td>{{ user.email }}</td>
+				<td>{{ user.password }}</td>
+				<td>{{ user.modified }}</td>
+				<td><a href="/admin/user/delete/{{user.id}}" >削除</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

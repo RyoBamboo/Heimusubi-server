@@ -7,10 +7,10 @@ from src.service.response import Response
 
 from src.models.user import User
 
-bp = Blueprint('auth', __name__)
+bp_auth = Blueprint('auth', __name__)
 
 
-@bp.route('/api/auth/signin', methods=['POST'])
+@bp_auth.route('/api/auth/signin', methods=['POST'])
 def signIn():
 	email = request.form['email']
 	password = User.hash_password(request.form['plaintext_password'])
@@ -22,7 +22,7 @@ def signIn():
 		return Response(400, '', 'Your Email or Password is invalid').send()
 
 
-@bp.route('/api/auth/signup', methods=['POST'])
+@bp_auth.route('/api/auth/signup', methods=['POST'])
 def signUp():
 
 	user_name = request.form['user_name']
