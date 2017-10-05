@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>へいむすび ｜{{ title }}</title>
+	<meta charset='utf-8'>
+	<link rel="stylesheet" type="text/css" href="/admin/static/uikit.min.css">
+	<link rel="stylesheet" type="text/css" href="/admin/static/style.css">
+	<script src="/admin/static/jquery.min.js"></script>
+	<script src="/admin/static/uikit.min.js"></script>
+</head>
+<body>
+	<div class="uk-container uk-container-small">
+		<div class="info">
+			{% include 'info.html' %}
+		</div>
+		<div class="content">
+			{% block content %}
+			{% endblock%}
+		</div>
+	<div>
+</body>
