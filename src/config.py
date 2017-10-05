@@ -9,4 +9,5 @@ class BaseConfig():
 	PASSWORD_SALT = 'taiyakis_stnm'
 	#SQLALCHEMY_DATABASE_URI = "postgresql://takenoshita@localhost:5432/heimusubi-server"
 	SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+
 	SQLALCHEMY_TRACK_MODIFICATIONS = True
