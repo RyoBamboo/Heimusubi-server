@@ -51,9 +51,12 @@ def index():
 
 @bp_admin.route('/admin/user/add')
 def add():
-	user = User('テスト', 'test@gmail.com', 'test')
+	password = User.hash_password('test')
+	user = User('テスト', 'test@gmail.com', password)
+
 	User.create(user)
-	return redirect("/admin/user")
+	return password
+	# return redirect("/admin/user")
 
 
 @bp_admin.route('/admin/user/delete/<user_id>')
