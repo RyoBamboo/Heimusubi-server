@@ -36,7 +36,7 @@ def base_static(filename):
 
 
 #-----------------------------------------------
-# Setting Routing
+# User
 #-----------------------------------------------
 @bp_admin.route('/admin/')
 @bp_admin.route('/admin/user')
