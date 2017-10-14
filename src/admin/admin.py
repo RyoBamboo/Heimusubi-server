@@ -56,7 +56,6 @@ def add():
 
 	User.create(user)
 	return password
-	# return redirect("/admin/user")
 
 
 @bp_admin.route('/admin/user/delete/<user_id>')
