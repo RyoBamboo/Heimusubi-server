@@ -51,7 +51,7 @@ def index():
 
 @bp_admin.route('/admin/user/add')
 def add():
-	user = User('テスト', 'test.com', 'test')
+	user = User('テスト', 'test@gmail.com', 'test')
 	User.create(user)
 	return redirect("/admin/user")
 
