@@ -24,4 +24,4 @@ class Response():
 		self.response['error_message'] = error_message
 
 	def send(self):
-		return json.dumps(self.response)
+		return json.dumps(self.response.data)
