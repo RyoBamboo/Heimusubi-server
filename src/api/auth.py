@@ -13,7 +13,7 @@ bp_auth = Blueprint('auth', __name__)
 @bp_auth.route('/api/auth/signin', methods=['POST'])
 def signIn():
 	email = request.form['email']
-	password = User.hash_password(request.form['plaintext_password'])
+	password = User.hash_password(request.form['plain_text_password'])
 
 	user = User.get_by('email', email)
 	if  user is not None and user.password == password:
@@ -27,8 +27,8 @@ def signUp():
 
 	user_name = request.form['user_name']
 	email = request.form['email']
-	plaintext_passward = request['plaintext_passward']
-	password = User.hash_password(plaintext_password)
+	plain_text_passward = request['plain_text_passward']
+	password = User.hash_password(plain_text_password)
 
 	if User.is_email_available(email):
 		unregisted_user = User(user_name, email, password)

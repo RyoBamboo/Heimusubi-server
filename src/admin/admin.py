@@ -36,7 +36,7 @@ def base_static(filename):
 
 
 #-----------------------------------------------
-# Setting Routing
+# User
 #-----------------------------------------------
 @bp_admin.route('/admin/')
 @bp_admin.route('/admin/user')
@@ -51,7 +51,9 @@ def index():
 
 @bp_admin.route('/admin/user/add')
 def add():
-	user = User('テスト', 'test.com', 'test')
+	password = User.hash_password('test')
+	user = User('テスト', 'test@gmail.com', password)
+
 	User.create(user)
 	return redirect("/admin/user")
 
