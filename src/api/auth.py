@@ -27,7 +27,7 @@ def signUp():
 
 	user_name = request.form['user_name']
 	email = request.form['email']
-	plain_text_passward = request.form['plain_text_passward']
+	plain_text_passward = request.form['plain_text_password']
 	password = User.hash_password(plain_text_password)
 
 	if User.is_email_available(email):
