@@ -20,6 +20,8 @@ def upload():
     # f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))
 
     data = request.json
+    data2 = data.read()
+    print(data2)
     sound = data['sound']['file_data']
     # fp = open('./test.m4a', 'w')
     # fp.write(str(base64.b64decode(sound)))
