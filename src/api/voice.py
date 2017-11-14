@@ -1,9 +1,7 @@
 import sys
+import os
 import base64
 from flask import Blueprint, request, jsonify
-from pprint import pprint
-
-from src.service.response import Response
 
 
 bp_voice = Blueprint('voice', __name__)
@@ -20,4 +18,9 @@ def upload():
     sound = data['sound']['file_data']
     fp = open('./test.m4a', 'w')
     fp.write(str(base64.b64decode(sound)))
+
+    BASE_DIR = os.path.dirnam(__file__)
+    myfile = open(os.path.join(BASE_DIR, 'static/sample.m4a'), "w")
+    myfile.write(sound)
+
     return jsonify(res='ok')
