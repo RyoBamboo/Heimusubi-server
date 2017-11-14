@@ -18,7 +18,6 @@ def upload():
 
     data = request.json
     sound = data['sound']['file_data']
-    print(sound)
     filename = "testaa.m4a"
     fp = open(filename, 'wb')
     fp.write(base64.b64decode(sound))
