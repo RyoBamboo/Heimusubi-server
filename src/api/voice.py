@@ -14,13 +14,17 @@ def upload():
         print(request.headers['Content-Type'], file=sys.stderr)
         return jsonify(res='error'), 400
 
-    print(request.files)
-    data = request.json
-    sound = data['sound']['file_data']
-    fp = open('./test.m4a', 'w')
-    fp.write(str(base64.b64decode(sound)))
-    BASE_DIR = os.path.dirname(__file__)
-    myfile = open(os.path.join(BASE_DIR, 'static/sample.m4a'), "w")
-    myfile.write(sound)
+    f = request.files['file']
+    f.save(f.filename)
+
+    # data = request.json
+    # print(data)
+    # sound = data['sound']['file_data']
+    # sound
+    # fp = open('./test.m4a', 'w')
+    # fp.write(str(base64.b64decode(sound)))
+    # BASE_DIR = os.path.dirname(__file__)
+    # myfile = open(os.path.join(BASE_DIR, 'static/sample.m4a'), "w")
+    # myfile.write(sound)
 
     return jsonify(res='ok')
