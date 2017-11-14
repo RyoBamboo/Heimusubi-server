@@ -3,10 +3,8 @@ import base64
 from flask import Blueprint, request, jsonify
 from pprint import pprint
 
-from src import db
 from src.service.response import Response
 
-from src.models.user import User
 
 bp_voice = Blueprint('voice', __name__)
 
@@ -16,15 +14,14 @@ def upload():
     if request.headers['Content-Type'] != 'application/json':
         print("aaa", file=sys.stderr)
         print(request.headers['Content-Type'], file=sys.stderr)
-        return flask.jsonify(res='error'), 400
+        return jsonify(res='error'), 400
 
     data = request.json
     sound = data['sound']['file_data']
     filename = "./voice/testaa.m4a"
     with open(filename, 'wb') as f:
-        f.write(base64.b64decode(s))
-
-	return jsonify(res='ok')
+        f.write(base64.b64decode(sound))
+    return jsonify(res='ok')
 
 
 @bp_voice.route('/api/voice/test')
