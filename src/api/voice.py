@@ -25,3 +25,9 @@ def upload():
         f.write(base64.b64decode(s))
 
 	return jsonify(res='ok')
+
+
+@bp_voice.route('/api/voice/test')
+def test():
+
+	return 'ok'
