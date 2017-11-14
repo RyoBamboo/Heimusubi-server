@@ -1,6 +1,8 @@
 import sys
 import os
 import base64
+from src import app
+
 from flask import Blueprint, request, jsonify
 
 
@@ -15,14 +17,13 @@ def upload():
         return jsonify(res='error'), 400
 
     f = request.files['file']
-    data = base64.b64decode(f.read())
+    f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))
 
     # data = request.json
     # print(data)
     # sound = data['sound']['file_data']
     # sound
-    fp = open('./test.m4a', 'wb')
-    fp.write(data)
+    # fp = open('./test.m4a', 'w')
     # fp.write(str(base64.b64decode(sound)))
     # BASE_DIR = os.path.dirname(__file__)
     # myfile = open(os.path.join(BASE_DIR, 'static/sample.m4a'), "w")
