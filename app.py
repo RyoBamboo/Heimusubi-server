@@ -4,6 +4,7 @@ from src.api.auth import bp_auth
 from src.admin.admin import bp_admin
 
 app.register_blueprint(bp_auth)
+app.register_blueprint(bp_heimu)
 app.register_blueprint(bp_admin)
 
 if __name__ == "__main__":
