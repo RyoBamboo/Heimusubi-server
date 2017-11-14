@@ -25,6 +25,6 @@ def upload():
     # fp.write(str(base64.b64decode(sound)))
     BASE_DIR = os.path.dirname(__file__)
     myfile = open(os.path.join(BASE_DIR, 'static/sample.m4a'), "wb")
-    myfile.write(sound)
+    myfile.write(base64.b64decode(sound))
 
     return jsonify(res='ok')
