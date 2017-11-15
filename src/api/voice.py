@@ -17,24 +17,7 @@ def upload():
         print(request.headers['Content-Type'], file=sys.stderr)
         return jsonify(res='error'), 400
 
-    data = request.json
-    bin_data = base64.b64decode(data['sound']['file_data'])
-    filename = 'aaaaa.m4a'
-    path_2_tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tmp")
-    filepath = os.path.join(path_2_tmp, filename)
 
-    print(filepath)
-    if not os.path.exists(path_2_tmp):
-        os.mkdir(path_2_tmp)
-    if os.path.exists(filepath):
-        sftp = pysftp.Connection('ryo.prodrb.com', username='ryo', password='itake0ryo879')
-        sftp.Connection.put_d(filepath, '/home/ryo', preserve_mtime=True)
-        print('tensoooooo')
-    if not os.path.exists(filepath):
-        print('nooooooooooooooo')
-    f = open(filepath, 'wb')
-    f.write(bin_data)
-    f.close()
     # sound = data['sound']['file_data']
     # # fp = open('./test.m4a', 'w')
     # # fp.write(str(base64.b64decode(sound)))
@@ -44,22 +27,3 @@ def upload():
 
     return jsonify(res='ok')
 
-
-@bp_voice.route('/api/voice/test')
-def test():
-	# filename = 'aaaaa.txt'
-	# path_2_tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tmp")
-	# filepath = os.path.join(path_2_tmp, filename)	
-	# print(filepath)
-
-	if not os.path.exists('/tmp'):
-		os.mkdir('/tmp')
-	if os.path.exists('/tmp/aaaa.txt'):
-		print('yaaaaaaaaaaaaaaa')
-	if not os.path.exists('/tmp/aaaa.txt'):
-		print('nooooooooooooooo')
-	f = open('/tmp/aaaa.txt', 'w')
-	f.write('tet')
-	f.close()
-	return 'ok'
-    
