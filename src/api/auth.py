@@ -45,7 +45,7 @@ def test():
 	# f.write('a')
 	# close
 
-	with open("testaaaaaaaaaa.txt","w") as fo:
-   fo.write("This is Test Data")
+	with open("testaaaaaaaaaa.txt", "w") as fo:
+		fo.write("This is Test Data")
 
 	return 'ok'
