@@ -16,10 +16,10 @@ def upload():
         print(request.headers['Content-Type'], file=sys.stderr)
         return jsonify(res='error'), 400
 
-    data = request.json
+    data = request.json['sound']
     bin_data = base64.b64decode(data['sound']['file_data'])
 
-    with open('aaaa.m4a', 'wb') as f:
+    with open('static/aaaa.m4a', 'wb') as f:
         f.write(bin_data)
 
     # f = request.files['file']

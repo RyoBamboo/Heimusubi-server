@@ -37,3 +37,10 @@ def signUp():
 
 	else:
 		return  Response(400, '', 'Your email has been registered already.').send()
+
+
+@bp_auth.route('/api/auth/test')
+def test():
+	f = open('static/text.txt', 'r')
+	a = f.read()
+	return a
