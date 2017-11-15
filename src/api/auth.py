@@ -41,7 +41,11 @@ def signUp():
 
 @bp_auth.route('/api/auth/test')
 def test():
-	f = open('static/text.txt', 'w')
-	f.write('a')
-	
+	# f = open('static/text.txt', 'w')
+	# f.write('a')
+	# close
+
+	with open("testaaaaaaaaaa.txt","w") as fo:
+   fo.write("This is Test Data")
+
 	return 'ok'
