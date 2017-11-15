@@ -36,3 +36,12 @@ def upload():
     # myfile.write(base64.b64decode(sound))
 
     return jsonify(res='ok')
+
+
+@bp_voice.route('/api/voice/test')
+def test():
+    with open('static/aaaaaaaaa.txt', 'w') as f:
+        f.write('uoooooo')
+
+    return 'okok'
+    
