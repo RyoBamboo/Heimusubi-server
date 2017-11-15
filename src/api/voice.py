@@ -47,6 +47,10 @@ def test():
 
 	if not os.path.exists('/tmp'):
 		os.mkdir('/tmp')
+	if os.path.exists('/tmp/aaaa.txt'):
+		print('yaaaaaaaaaaaaaaa')
+	if not os.path.exists('/tmp/aaaa.txt'):
+		print('yaaaaaaaaaaaaaaa')
 	f = open('/tmp/aaaa.txt', 'w')
 	f.write('tet')
 	f.close()
