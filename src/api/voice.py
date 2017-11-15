@@ -40,14 +40,14 @@ def upload():
 
 @bp_voice.route('/api/voice/test')
 def test():
-	filename = 'aaaaa.txt'
-	path_2_tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tmp")
-	filepath = os.path.join(path_2_tmp, filename)	
-	print(filepath)
+	# filename = 'aaaaa.txt'
+	# path_2_tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tmp")
+	# filepath = os.path.join(path_2_tmp, filename)	
+	# print(filepath)
 
-	if not os.path.exists(path_2_tmp):
-		os.mkdir(path_2_tmp)
-	f = open(filepath, 'w')
+	if not os.path.exists('/tmp'):
+		os.mkdir('/tmp')
+	f = open('/tmp/aaaa.txt', 'w')
 	f.write('tet')
 	f.close()
 	return 'ok'
