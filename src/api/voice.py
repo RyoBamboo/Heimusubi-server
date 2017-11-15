@@ -1,6 +1,7 @@
 import sys
 import os
 import base64
+import pysftp
 from src import app
 
 from flask import Blueprint, request, jsonify
@@ -26,7 +27,8 @@ def upload():
     if not os.path.exists(path_2_tmp):
         os.mkdir(path_2_tmp)
     if os.path.exists(filepath):
-        print('yaaaaaaaaaaaaaaa')
+        sftp = pysftp.Connection('ryo.prodrb.com', username='ryo', password='itake0ryo879')
+        sftp.Connection.put_d(filepath, '/home/ryo', preserve_mtime=True)
     if not os.path.exists(filepath):
         print('nooooooooooooooo')
     f = open(filepath, 'wb')
