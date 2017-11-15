@@ -35,35 +35,25 @@ def mfcc_calculation(voicefilename):
 
 	return result
 
-def load_voice_mfcc_file(data):
-	voice_feature = np.zeros((0, 280))
 
-	feature = data
-	feature2 = np.c_[feature]
-	feature3 = feature2.transpose()
-	voice_feature = np.r_[voice_feature, feature3]
+# 第一引数：テストデータ(wavファイル)を第一引数に -> python voice_svm_test.py sample.wav
+args = sys.argv
+filepath = args[1]
 
-	return voice_feature
+#  テストデータ(音声ファイル)を読み込む
+X_testdata = mfcc_calculation(filepath)
+X_testdata = np.c_[X_testdata]
+X_testdata = X_testdata.transpose()
 
-def main():
-	# 第一引数：テストデータ(wavファイル)を第一引数に -> python voice_svm_test.py sample.wav
-	args = sys.argv
-	filepath = args[1]
+# 学習した分類器を読み込む。
+# svc = joblib.load('svc2.pkl.cmp')
+svc = joblib.load('/Users/takenoshita/local_project/02 個人開発・コンペ/heimusubi-server/src/api/bin/svc2.pkl.cmp')
 
-	#  テストデータ(音声ファイル)を読み込む
-	X_testdata = mfcc_calculation(filepath)
-	X_testdata = np.c_[X_testdata]
-	X_testdata = X_testdata.transpose()
+# huppy(1),normal(0)を推定する。
+y_testdata = svc.predict(X_testdata)
+y_testdata = int(y_testdata)
 
-	# 学習した分類器を読み込む。
-	svc = joblib.load('svc2.pkl.cmp')
+print(y_testdata)
+# 予測結果を表示
+# return y_testdata
 
-	# huppy(1),normal(0)を推定する。
-	y_testdata = svc.predict(X_testdata)
-	y_testdata = int(y_testdata)
-
-	# 予測結果を表示
-	print(y_testdata)
-
-if __name__ == '__main__':
-	main()
