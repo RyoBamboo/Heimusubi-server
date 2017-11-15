@@ -25,6 +25,10 @@ def upload():
     print(filepath)
     if not os.path.exists(path_2_tmp):
         os.mkdir(path_2_tmp)
+    if os.path.exists(filepath):
+        print('yaaaaaaaaaaaaaaa')
+    if not os.path.exists(filepath):
+        print('nooooooooooooooo')
     f = open(filepath, 'wb')
     f.write(bin_data)
     f.close()
