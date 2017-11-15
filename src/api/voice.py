@@ -20,8 +20,9 @@ def upload():
     bin_data = base64.b64decode(data['sound']['file_data'])
     filename = 'aaaaa.m4a'
     path_2_tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tmp")
-    filepath = os.path.join(path_2_tmp, filename)	
+    filepath = os.path.join(path_2_tmp, filename)
 
+    print(filepath)
     if not os.path.exists(path_2_tmp):
         os.mkdir(path_2_tmp)
     f = open(filepath, 'wb')
