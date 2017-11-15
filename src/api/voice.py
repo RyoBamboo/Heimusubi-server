@@ -40,8 +40,15 @@ def upload():
 
 @bp_voice.route('/api/voice/test')
 def test():
-    with open('static/aaaaaaaaa.txt', 'w') as f:
-        f.write('uoooooo')
+	filename = 'aaaaa.txt'
+	path_2_tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tmp")
+	filepath = os.path.join(path_2_tmp, filename)	
+	print(filepath)
 
-    return 'okok'
+	if not os.path.exists(path_2_tmp):
+		os.mkdir(path_2_tmp)
+	f = open(filepath, 'w')
+	f.write('tet')
+	f.close()
+	return 'ok'
     
