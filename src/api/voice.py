@@ -19,15 +19,15 @@ def upload():
     data = request.json
     bin_data = base64.b64decode(data['sound']['file_data'])
 
-    with open('static/aaaa.m4a', 'wb') as f:
-        f.write(bin_data)
+	filename = 'aaaaa.txt'
+	path_2_tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tmp")
+	filepath = os.path.join(path_2_tmp, filename)	
 
-    # f = request.files['file']
-    # f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))
-
-    # data = request.json
-    # data2 = data.read()
-    # print(data2)
+	if not os.path.exists(path_2_tmp):
+		os.mkdir(path_2_tmp)
+	f = open(filepath, 'wb')
+	f.write(bin_data)
+	f.close()
     # sound = data['sound']['file_data']
     # # fp = open('./test.m4a', 'w')
     # # fp.write(str(base64.b64decode(sound)))
