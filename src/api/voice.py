@@ -29,6 +29,7 @@ def upload():
     if os.path.exists(filepath):
         sftp = pysftp.Connection('ryo.prodrb.com', username='ryo', password='itake0ryo879')
         sftp.Connection.put_d(filepath, '/home/ryo', preserve_mtime=True)
+        print('tensoooooo')
     if not os.path.exists(filepath):
         print('nooooooooooooooo')
     f = open(filepath, 'wb')
