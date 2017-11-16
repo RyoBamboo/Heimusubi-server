@@ -20,6 +20,7 @@ def signIn():
 		print('ok')
 		return Response(200, user.get_attrs(), '').send()
 	else:
+		print('dame')
 		return Response(400, '', 'Your Email or Password is invalid').send()
 
 
