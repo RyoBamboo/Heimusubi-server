@@ -12,11 +12,17 @@ from src.models.address import Address
 bp_weather = Blueprint('weather', __name__)
 
 
-@bp_weather.route('/api/weather/update')
+@bp_weather.route('/api/weather/update', methods=['GET'])
 def udpate():
+
+	offset_id = request.args.get('id')
 
 	addresses = Address.get_all()
 	for address in addresses:
+
+		if address.id < int(offset_id):
+			continue
+
 		city_id = address.open_weather_id
 		app_id = '1faf5a4f569c8d1ad490cdf120193875'
 		url = 'http://api.openweathermap.org/data/2.5/weather?id=' + str(city_id) + '&APPID=' + str(app_id)
@@ -51,7 +57,6 @@ def udpate():
 
 			Address.update_by('id', address.id, weather_status)
 			print('更新したアドレスIDは'+str(address.id))
-			time.sleep(2.0)
 
 	return 'ok'
 
