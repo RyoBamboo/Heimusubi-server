@@ -17,6 +17,7 @@ def signIn():
 
 	user = User.get_by('email', email)
 	if  user is not None and user.password == password:
+		print('ok')
 		return Response(200, user.get_attrs(), '').send()
 	else:
 		return Response(400, '', 'Your Email or Password is invalid').send()
