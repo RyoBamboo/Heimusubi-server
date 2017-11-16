@@ -14,7 +14,7 @@ bp_weather = Blueprint('weather', __name__)
 @bp_weather.route('/api/weather/update')
 def udpate():
 
-	addresses = Address.get_all()
+	# addresses = Address.get_all()
 	for address in addresses:
 		city_id = address.open_weather_id
 		app_id = '1faf5a4f569c8d1ad490cdf120193875'
@@ -33,17 +33,7 @@ def udpate():
 
 @bp_weather.route('/api/weather/get', methods=['POST'])
 def get():
-
-	for address in addresses:
-		city_id = address.open_weather_id
-		app_id = '1faf5a4f569c8d1ad490cdf120193875'
-		url = 'http://api.openweathermap.org/data/2.5/weather?id=' + str(city_id) + '&APPID=' + str(app_id)
-		with urllib.request.urlopen(url) as response:
-			result = response.read()
-			data = json.loads(result)
-			weather_data = data['weather']
-			weather_id = weather_data[0]['id']
-			Address.update_by('id', address.id, weather_id)
-			print(address.id)
-
-	return 'ok'
+	address_id = request.form['address_id']
+	address = Address.get_by('id', address_id)
+	weather_status = address.weather_status
+	return str(weather_status)
