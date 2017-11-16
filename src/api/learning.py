@@ -19,7 +19,7 @@ bp_learning = Blueprint('learning', __name__)
 
 @bp_learning.route('/api/learning/start')
 def start():
-	urllib.request.urlretrieve('http://design.prodrb.com/voices/file.wav', 'src/api/bin/tmp/file.wav')
+	# urllib.request.urlretrieve('http://design.prodrb.com/voices/file.wav', 'src/api/bin/tmp/file.wav')
 
 	result = subprocess.Popen(['python', 'src/api/bin/voice_svm_test.py', 'src/api/bin/tmp/file.wav'], stdout=subprocess.PIPE)
 	data = result.communicate()[0]
