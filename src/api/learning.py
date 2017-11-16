@@ -21,7 +21,7 @@ bp_learning = Blueprint('learning', __name__)
 def start():
 	# urllib.request.urlretrieve('http://design.prodrb.com/voices/file.wav', 'src/api/bin/tmp/file.wav')
 
-	result = subprocess.Popen(['python', 'src/api/bin/voice_svm_test.py', 'src/api/bin/tmp/file.wav'], stdout=subprocess.PIPE)
+	result = subprocess.Popen(['python', 'src/api/bin/voice_svm_test.py', 'src/api/bin/file.wav'], stdout=subprocess.PIPE)
 	data = result.communicate()[0]
 	decoded_result = data.decode('utf-8').strip()
 	print(decoded_result)
