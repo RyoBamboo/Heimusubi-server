@@ -15,6 +15,8 @@ def signIn():
 	email = request.form['email']
 	password = request.form['plain_text_password']
 	user = User.get_by('email', email)
+	print(password)
+	print(user.user_name)
 	if  user is not None and user.password == password:
 		print('ok')
 		return Response(200, user.get_attrs(), '').send()
