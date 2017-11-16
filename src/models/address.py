@@ -51,7 +51,6 @@ class Address(db.Model):
 	@classmethod
 	def update_by(cls, key, value, update_value):
 		address = db.session.query(cls).filter(getattr(cls, key) == value).first()
-		print(update_value)
 		address.weather_status = update_value
 		address.modified = int(datetime.now().strftime('%s'))
 
