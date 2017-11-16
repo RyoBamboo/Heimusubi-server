@@ -23,7 +23,7 @@ mqttc.on_subscribe = on_subscribe
 
 host = 'm14.cloudmqtt.com'
 port = 17419
-topic = 'test'
+topic = 'occupied/status'
 username = 'hufvczek'
 password = 'Jxv8I_AvjN7S'
 

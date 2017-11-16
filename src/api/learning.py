@@ -45,6 +45,33 @@ def start():
 	
 	return 'ok'
 
+@bp_learning.route('/api/learning/occupied', methods=['POST'])
+def occupied():
+
+	name  = request.form['name']
+	status = request.form['status']
+
+	data = str(name) + '_' + str(status)
+
+	host = 'm14.cloudmqtt.com'
+	port = 17419
+	topic = 'occupied/status'
+	username = 'hufvczek'
+	password = 'Jxv8I_AvjN7S'
+
+	mqttc = mqtt.Client()
+	mqttc.on_publish = on_publish
+	mqttc.username_pw_set(username, password)
+	mqttc.connect(host, port)
+
+
+	mqttc.publish(topic, data)
+	mqttc.disconnect()
+
+	return 'ok'
+
 
 def on_publish(client, obj, mid):
 	print("send")
+
+
