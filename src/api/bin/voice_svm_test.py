@@ -47,7 +47,7 @@ X_testdata = X_testdata.transpose()
 
 # 学習した分類器を読み込む。
 # svc = joblib.load('svc2.pkl.cmp')
-svc = joblib.load('/Users/takenoshita/local_project/02 個人開発・コンペ/heimusubi-server/src/api/bin/svc2.pkl.cmp')
+svc = joblib.load('src/api/bin/svc2.pkl.cmp')
 
 # huppy(1),normal(0)を推定する。
 y_testdata = svc.predict(X_testdata)
