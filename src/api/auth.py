@@ -14,7 +14,7 @@ bp_auth = Blueprint('auth', __name__)
 def signIn():
 	email = request.form['email']
 	password = User.hash_password(request.form['plain_text_password'])
-
+	print(password)
 	user = User.get_by('email', email)
 	if  user is not None and user.password == password:
 		print('ok')
