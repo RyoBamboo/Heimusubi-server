@@ -25,7 +25,7 @@ def start():
 	# data = result.communicate()[0]
 	# decoded_result = data.decode('utf-8').strip()
 	# print(decoded_result)
-	decoded_result = urllib.request.urlopen('http://design.prodrb.com/result.txt').read()
+	decoded_result = urllib.request.urlopen('http://design.prodrb.com/bin/result.txt').read()
 
 	host = 'm14.cloudmqtt.com'
 	port = 17419
