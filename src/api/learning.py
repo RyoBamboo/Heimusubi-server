@@ -17,7 +17,7 @@ import paho.mqtt.client as mqtt
 bp_learning = Blueprint('learning', __name__)
 
 
-@bp_learning.route('/api/learning/start')
+@bp_learning.route('/api/learning/start', methods=['GET'])
 def start():
 	# urllib.request.urlretrieve('http://design.prodrb.com/voices/file.wav', 'src/api/bin/tmp/file.wav')
 
